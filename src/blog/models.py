@@ -1,11 +1,14 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils import timezone
 
+from django_learn import settings
 
 class Post(models.Model):
-    author = models.CharField(
+    author = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE,
         verbose_name='Автор',
-        max_length=255,
     )
 
     title = models.CharField(
